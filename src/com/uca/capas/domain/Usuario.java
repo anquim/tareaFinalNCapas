@@ -7,6 +7,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(schema = "public", name = "usuario")
@@ -16,10 +18,12 @@ public class Usuario {
 	@SequenceGenerator(name = "usuario_c_usuario_seq", sequenceName = "public.usuario_c_usuario_seq", allocationSize = 1)
 	@Column(name = "c_usuario")
 	private Long codigoUsuario;
-
+	
+	@NotNull
+	@Email
 	@Column(name = "u_usuario")
 	private String uUsuario;
-
+	@NotNull
 	@Column(name = "u_clave")
 	private String uClave;
 	

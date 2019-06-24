@@ -2,6 +2,7 @@ package com.uca.capas.domain;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -11,8 +12,10 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 
-import com.uca.capas.domain.Empleado;
+
 
 @Entity
 @Table(schema = "public", name = "sucursal")
@@ -23,22 +26,29 @@ public class Sucursal {
 	@Column(name = "c_sucursal")
 	private Long codigoSucursal;
 
+	@NotNull
 	@Column(name = "s_nombre")
 	private String sNombre;
 
+	@NotNull
 	@Column(name = "s_ubicacion")
 	private String sUbicacion;
 
+	@NotNull
 	@Column(name = "s_horario")
 	private String sHorario;
 
+	@NotNull
+	@Min(value = 0)
 	@Column(name = "s_nmesas")
 	private Integer sNumeroMesas;
 
+	@NotNull
 	@Column(name = "s_nomgerente")
-	private Integer sNombreGerente;
+	private String sNombreGerente;
 
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "eSucursal")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "eSucursal", cascade = { CascadeType.MERGE, CascadeType.REFRESH,
+			CascadeType.DETACH, CascadeType.REMOVE })
 	private List<Empleado> empleados;
 
 	public Sucursal() {
@@ -84,11 +94,11 @@ public class Sucursal {
 		this.sNumeroMesas = sNumeroMesas;
 	}
 
-	public Integer getsNombreGerente() {
+	public String getsNombreGerente() {
 		return sNombreGerente;
 	}
 
-	public void setsNombreGerente(Integer sNombreGerente) {
+	public void setsNombreGerente(String sNombreGerente) {
 		this.sNombreGerente = sNombreGerente;
 	}
 
@@ -101,7 +111,7 @@ public class Sucursal {
 	}
 
 	public Sucursal(Long codigoSucursal, String sNombre, String sUbicacion, String sHorario, Integer sNumeroMesas,
-			Integer sNombreGerente, List<Empleado> empleados) {
+			String sNombreGerente, List<Empleado> empleados) {
 		this.codigoSucursal = codigoSucursal;
 		this.sNombre = sNombre;
 		this.sUbicacion = sUbicacion;
