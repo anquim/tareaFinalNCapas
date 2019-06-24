@@ -12,7 +12,7 @@
 
 
 <meta charset="UTF-8">
-<title>Rustico</title>
+<title>Restaurante</title>
 </head>
 <body>
 	<nav>

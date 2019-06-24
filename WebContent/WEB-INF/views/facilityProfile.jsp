@@ -11,7 +11,7 @@
 	crossorigin="anonymous">
 	
 <meta charset="UTF-8">
-<title>Rustico Restaurante</title>
+<title>Restaurante</title>
 </head>
 <body>
 	<nav>
